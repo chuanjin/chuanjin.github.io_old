@@ -1,0 +1,978 @@
+<!DOCTYPE html>
+
+
+
+
+
+
+
+
+
+
+
+
+  
+
+
+<html class="theme-next muse use-motion" lang>
+<head><meta name="generator" content="Hexo 3.8.0">
+  <meta charset="UTF-8">
+<meta http-equiv="X-UA-Compatible" content="IE=edge">
+<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=2">
+<meta name="theme-color" content="#222">
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+  
+  
+  <link rel="stylesheet" href="/lib/fancybox/source/jquery.fancybox.css?v=2.1.5">
+
+
+
+
+
+
+
+<link rel="stylesheet" href="/lib/font-awesome/css/font-awesome.min.css?v=4.6.2">
+
+<link rel="stylesheet" href="/css/main.css?v=7.0.1">
+
+
+  <link rel="apple-touch-icon" sizes="180x180" href="/images/apple-touch-icon-next.png?v=7.0.1">
+
+
+  <link rel="icon" type="image/png" sizes="32x32" href="/images/favicon-32x32-next.png?v=7.0.1">
+
+
+  <link rel="icon" type="image/png" sizes="16x16" href="/images/favicon-16x16-next.png?v=7.0.1">
+
+
+  <link rel="mask-icon" href="/images/logo.svg?v=7.0.1" color="#222">
+
+
+
+
+
+
+
+<script id="hexo.configurations">
+  var NexT = window.NexT || {};
+  var CONFIG = {
+    root: '/',
+    scheme: 'Muse',
+    version: '7.0.1',
+    sidebar: {"position":"left","display":"post","offset":12,"b2t":false,"scrollpercent":true,"onmobile":false,"dimmer":false},
+    fancybox: true,
+    fastclick: false,
+    lazyload: false,
+    tabs: true,
+    motion: {"enable":true,"async":false,"transition":{"post_block":"fadeIn","post_header":"slideDownIn","post_body":"slideDownIn","coll_header":"slideLeftIn","sidebar":"slideUpIn"}},
+    algolia: {
+      applicationID: '',
+      apiKey: '',
+      indexName: '',
+      hits: {"per_page":10},
+      labels: {"input_placeholder":"Search for Posts","hits_empty":"We didn't find any results for the search: ${query}","hits_stats":"${hits} results found in ${time} ms"}
+    }
+  };
+</script>
+
+
+  
+
+
+
+
+  <meta name="description" content="Static site generatorWhen I want to write some technical blogs and publish them online, from programmers’ pointer of view, there are many options for static website generator, such as jekyll, octopres">
+<meta name="keywords" content="Hexo">
+<meta property="og:type" content="article">
+<meta property="og:title" content="Setup my blog using Hexo">
+<meta property="og:url" content="https://chuanjin.me/2015/01/17/Setup-my-blog-using-Hexo/index.html">
+<meta property="og:site_name" content="My Tech Notes">
+<meta property="og:description" content="Static site generatorWhen I want to write some technical blogs and publish them online, from programmers’ pointer of view, there are many options for static website generator, such as jekyll, octopres">
+<meta property="og:locale" content="default">
+<meta property="og:updated_time" content="2019-03-03T17:33:28.076Z">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:title" content="Setup my blog using Hexo">
+<meta name="twitter:description" content="Static site generatorWhen I want to write some technical blogs and publish them online, from programmers’ pointer of view, there are many options for static website generator, such as jekyll, octopres">
+
+
+
+
+
+
+  <link rel="canonical" href="https://chuanjin.me/2015/01/17/Setup-my-blog-using-Hexo/">
+
+
+
+<script id="page.configurations">
+  CONFIG.page = {
+    sidebar: "",
+  };
+</script>
+
+  <title>Setup my blog using Hexo | My Tech Notes</title>
+  
+
+
+
+
+  <script async src="//www.googletagmanager.com/gtag/js?id=[object Object]"></script>
+  <script>
+    var host = window.location.hostname;
+    if (host !== "localhost" || !true) {
+      window.dataLayer = window.dataLayer || [];
+      function gtag(){dataLayer.push(arguments);}
+      gtag('js', new Date());
+      gtag('config', 'UA-42884687-5');
+    }
+  </script>
+
+
+
+
+
+
+
+
+
+  <noscript>
+  <style>
+  .use-motion .motion-element,
+  .use-motion .brand,
+  .use-motion .menu-item,
+  .sidebar-inner,
+  .use-motion .post-block,
+  .use-motion .pagination,
+  .use-motion .comments,
+  .use-motion .post-header,
+  .use-motion .post-body,
+  .use-motion .collection-title { opacity: initial; }
+
+  .use-motion .logo,
+  .use-motion .site-title,
+  .use-motion .site-subtitle {
+    opacity: initial;
+    top: initial;
+  }
+
+  .use-motion .logo-line-before i { left: initial; }
+  .use-motion .logo-line-after i { right: initial; }
+  </style>
+</noscript>
+
+</head>
+
+<body itemscope itemtype="http://schema.org/WebPage" lang="default">
+
+  
+  
+    
+  
+
+  <div class="container sidebar-position-left page-post-detail">
+    <div class="headband"></div>
+
+    <header id="header" class="header" itemscope itemtype="http://schema.org/WPHeader">
+      <div class="header-inner"><div class="site-brand-wrapper">
+  <div class="site-meta">
+    
+
+    <div class="custom-logo-site-title">
+      <a href="/" class="brand" rel="start">
+        <span class="logo-line-before"><i></i></span>
+        <span class="site-title">My Tech Notes</span>
+        <span class="logo-line-after"><i></i></span>
+      </a>
+    </div>
+    
+    
+  </div>
+
+  <div class="site-nav-toggle">
+    <button aria-label="Toggle navigation bar">
+      <span class="btn-bar"></span>
+      <span class="btn-bar"></span>
+      <span class="btn-bar"></span>
+    </button>
+  </div>
+</div>
+
+
+
+<nav class="site-nav">
+  
+    <ul id="menu" class="menu">
+      
+        
+        
+        
+          
+          <li class="menu-item menu-item-home">
+
+    
+    
+    
+      
+    
+
+    
+
+    <a href="/" rel="section"><i class="menu-item-icon fa fa-fw fa-home"></i> <br>Home</a>
+
+  </li>
+        
+        
+        
+          
+          <li class="menu-item menu-item-archives">
+
+    
+    
+    
+      
+    
+
+    
+
+    <a href="/archives/" rel="section"><i class="menu-item-icon fa fa-fw fa-archive"></i> <br>Archives</a>
+
+  </li>
+        
+        
+        
+          
+          <li class="menu-item menu-item-about">
+
+    
+    
+    
+      
+    
+
+    
+
+    <a href="/about/" rel="section"><i class="menu-item-icon fa fa-fw fa-user"></i> <br>About</a>
+
+  </li>
+
+      
+      
+    </ul>
+  
+
+  
+    
+
+  
+
+  
+</nav>
+
+
+
+  
+
+
+
+</div>
+    </header>
+
+    
+
+
+    <main id="main" class="main">
+      <div class="main-inner">
+        <div class="content-wrap">
+          
+          <div id="content" class="content">
+            
+
+  <div id="posts" class="posts-expand">
+    
+
+  
+
+  
+  
+  
+
+  
+    <div class="reading-progress-bar"></div>
+  
+
+  <article class="post post-type-normal" itemscope itemtype="http://schema.org/Article">
+  
+  
+  
+  <div class="post-block">
+    <link itemprop="mainEntityOfPage" href="https://chuanjin.me/2015/01/17/Setup-my-blog-using-Hexo/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="name" content="Chuan Jin">
+      <meta itemprop="description" content>
+      <meta itemprop="image" content="/images/avatar.jpeg">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="My Tech Notes">
+    </span>
+
+    
+      <header class="post-header">
+
+        
+        
+          <h1 class="post-title" itemprop="name headline">Setup my blog using Hexo
+
+              
+            
+          </h1>
+        
+
+        <div class="post-meta">
+          <span class="post-time">
+
+            
+            
+            
+
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-calendar-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">Posted on</span>
+              
+
+              
+                
+              
+
+              <time title="Created: 2015-01-17 18:25:21" itemprop="dateCreated datePublished" datetime="2015-01-17T18:25:21+01:00">2015-01-17</time>
+            
+
+            
+              
+
+              
+                
+                <span class="post-meta-divider">|</span>
+                
+
+                <span class="post-meta-item-icon">
+                  <i class="fa fa-calendar-check-o"></i>
+                </span>
+                
+                  <span class="post-meta-item-text">Edited on</span>
+                
+                <time title="Modified: 2019-03-03 18:33:28" itemprop="dateModified" datetime="2019-03-03T18:33:28+01:00">2019-03-03</time>
+              
+            
+          </span>
+
+          
+            <span class="post-category">
+            
+              <span class="post-meta-divider">|</span>
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-folder-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">In</span>
+              
+              
+                <span itemprop="about" itemscope itemtype="http://schema.org/Thing"><a href="/categories/DevOps/" itemprop="url" rel="index"><span itemprop="name">DevOps</span></a></span>
+
+                
+                
+              
+            </span>
+          
+
+          
+            
+            
+          
+
+          
+          
+
+          
+
+          
+
+          
+
+        </div>
+      </header>
+    
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+
+      
+      
+
+      
+        <h1 id="Static-site-generator"><a href="#Static-site-generator" class="headerlink" title="Static site generator"></a>Static site generator</h1><p>When I want to write some technical blogs and publish them online, from programmers’ pointer of view, there are many options for static website generator, such as <a href="http://jekyllrb.com/" target="_blank" rel="noopener">jekyll</a>, <a href="http://octopress.org/" target="_blank" rel="noopener">octopress</a>, <a href="http://blog.getpelican.com/" target="_blank" rel="noopener">pelican</a>, <a href="http://hexo.io/" target="_blank" rel="noopener">hexo</a>, etc. It is actually not that easy to say which one is the best, depends largely on your needs and background, e.g. jekyll and octopress is ruby based, pelican is powered by python, and hexo is built on nodejs. You can of course pick any one to start with, I did some investigation and comparison and finally end up choosing hexo, simply because it is easy to start with, and I like its simple and clean style.</p>
+<hr>
+<h1 id="Setup-hexo"><a href="#Setup-hexo" class="headerlink" title="Setup hexo"></a>Setup hexo</h1><p>Two depencies need to be installed in advance:</p>
+<ul>
+<li><a href="http://git-scm.com/" target="_blank" rel="noopener">Git</a></li>
+<li><a href="https://nodejs.org/" target="_blank" rel="noopener">Node.js</a></li>
+</ul>
+<a id="more"></a>
+<p>I am using Ubuntu:</p>
+<pre><code>sudo apt-get update
+sudo apt-get install git-core
+sudo apt-get install nodejs
+sudo npm install -g hexo-cli
+</code></pre><p>Then to create a new blog system:</p>
+<pre><code>hexo init myblog
+cd myblog
+npm install
+</code></pre><p>All the settings could be customized in <strong><em>_config.yml</em></strong>.  Read more at <a href="http://hexo.io/docs/index.html" target="_blank" rel="noopener">http://hexo.io/docs/index.html</a></p>
+<p>Now the basic setup is done, to serve it locally</p>
+<pre><code>hexo server
+</code></pre><hr>
+<h1 id="Themes"><a href="#Themes" class="headerlink" title="Themes"></a>Themes</h1><p>There are many themes avaialbe at <a href="http://hexo.io/themes/" target="_blank" rel="noopener">http://hexo.io/themes/</a> ,  and I like <a href="https://github.com/iissnan/hexo-theme-next" target="_blank" rel="noopener">NexT</a> most.</p>
+<p>To install it:</p>
+<pre><code>cd myblog
+git clone https://github.com/iissnan/hexo-theme-next themes/next
+</code></pre><p>From the blog <strong><em>_config.yml</em></strong> , set language to default (English) and theme to nexT</p>
+<pre><code>language: default
+theme: next
+</code></pre><p>To make <em>tags</em> work:</p>
+<pre><code>hexo new page &quot;tags&quot;
+</code></pre><p>A file called <strong><em>index.md</em></strong> will be created under <strong><em>source/tags</em></strong>, set the <strong><em>type</em></strong> to <strong>“tags”</strong></p>
+<pre><code>title: tags
+date: 2015-06-27 11:37:19
+---
+</code></pre><p>add <code>type: &quot;tags&quot;</code> to <strong><em>source/categories/index.md</em></strong>, and enable it form <strong><em>_config.yml</em></strong></p>
+<p>Then enable tag inside <strong><em>_config.yml</em></strong> located at <strong><em>themes/next</em></strong>, just uncomment it</p>
+<pre><code>menu:
+  home: /
+  categories: /categories
+  archives: /archives
+  tags: /tags
+</code></pre><p>Similar procedure for categories</p>
+<pre><code>hexo new page categories
+</code></pre><p>add <code>type: &quot;categories&quot;</code> to <strong><em>source/categories/index.md</em></strong>, and enable it form <strong><em>_config.yml</em></strong>.</p>
+<p><strong>Further configs</strong></p>
+<ul>
+<li>You may want to create an <strong>images</strong> folder under <strong><em>source</em></strong>, and refer the images from posts by adding: <code>![](/images/image_name.PNG)</code> and add your own avatar named “default_avatar.jpg”.</li>
+<li>Set <code>icon_font: linecons</code> in <strong><em>themes/next/_config.yml</em></strong> instead of <strong><em>default</em></strong></li>
+<li>Enable <code>scheme: Mist</code></li>
+</ul>
+<p>You might want to get the latest feature and bug fix, after a while you need to update under <strong><em>themes/next</em></strong> folder</p>
+<pre><code>git pull
+</code></pre><hr>
+<h1 id="Workflow"><a href="#Workflow" class="headerlink" title="Workflow"></a>Workflow</h1><p>I am using Github to host the static page, so firstly create a repository called <strong>YOUR_USERNAME.github.io</strong>, then edit the blog <strong><em>_confg.yml</em></strong> file</p>
+<pre><code>deploy:
+  type: git
+  repo: https://github.com/chuanjin/chuanjin.github.io.git
+  branch: master
+  message: hexo deploy
+</code></pre><p>To create a new post:</p>
+<pre><code>hexo new &quot;title&quot;
+</code></pre><p>write the post, update it and view the layout on you local machine</p>
+<pre><code>hexo server
+</code></pre><p>If your post is too long, it is good to insert <code>&lt;!--more--&gt;</code> tag in your markdown source file somewhere when it is needed.</p>
+<p>To deploy it to Github, install git deployer if you haven’t</p>
+<pre><code>npm install hexo-deployer-git --save
+</code></pre><p>And then generate all the files and deploy</p>
+<pre><code>hexo clean
+hexo generate
+hexo deploy
+</code></pre><p>a reference workflow image could be found here: <a href="http://jr0cket.co.uk/developer-guides/hexo-workflow.pdf" target="_blank" rel="noopener">http://jr0cket.co.uk/developer-guides/hexo-workflow.pdf</a></p>
+<p>You may notice after <code>hexo generate</code> there will generate a <strong><em>public</em></strong> folder, and will be pushed to Github by <strong><em>hexo deploy</em></strong>, however it is always good to keep a backup of your original makedown posts somewhere, either push it into a different git repository, or use the script below to backup for you automatically during  deployment.</p>
+<pre><code>#!/bin/bash
+hexo clean
+hexo generate
+if test -d public/posts_backup
+then
+    rm -rf public/posts_backup
+fi
+cp -r source/ public/posts_backup
+hexo deploy
+</code></pre><p>To setup custom domain, you need to create a file called <strong>CNAME</strong> under the <strong><em>source</em></strong> folder, and put your domain into it, then configure the A records from you DNS provider.</p>
+<p>refer to<br><a href="https://help.github.com/articles/setting-up-a-custom-domain-with-github-pages/" target="_blank" rel="noopener">https://help.github.com/articles/setting-up-a-custom-domain-with-github-pages/</a><br><a href="https://help.github.com/articles/tips-for-configuring-an-a-record-with-your-dns-provider/" target="_blank" rel="noopener">https://help.github.com/articles/tips-for-configuring-an-a-record-with-your-dns-provider/</a></p>
+<p>Now we are done! Enjoy it and have fun! :)</p>
+
+      
+    </div>
+
+    
+
+    
+    
+    
+
+    
+
+    
+      
+    
+    
+
+    
+
+    <footer class="post-footer">
+      
+        <div class="post-tags">
+          
+            <a href="/tags/Hexo/" rel="tag"># Hexo</a>
+          
+        </div>
+      
+
+      
+      
+      
+
+      
+        <div class="post-nav">
+          <div class="post-nav-next post-nav-item">
+            
+              <a href="/2015/01/02/Linux-command/" rel="next" title="Linux commands">
+                <i class="fa fa-chevron-left"></i> Linux commands
+              </a>
+            
+          </div>
+
+          <span class="post-nav-divider"></span>
+
+          <div class="post-nav-prev post-nav-item">
+            
+              <a href="/2015/02/10/Rails-cheetsheet/" rel="prev" title="Rails cheetsheet">
+                Rails cheetsheet <i class="fa fa-chevron-right"></i>
+              </a>
+            
+          </div>
+        </div>
+      
+
+      
+      
+    </footer>
+  </div>
+  
+  
+  
+  </article>
+
+
+  </div>
+
+
+          </div>
+          
+
+  
+
+
+
+        </div>
+        
+          
+  
+  <div class="sidebar-toggle">
+    <div class="sidebar-toggle-line-wrap">
+      <span class="sidebar-toggle-line sidebar-toggle-line-first"></span>
+      <span class="sidebar-toggle-line sidebar-toggle-line-middle"></span>
+      <span class="sidebar-toggle-line sidebar-toggle-line-last"></span>
+    </div>
+  </div>
+
+  <aside id="sidebar" class="sidebar">
+    <div class="sidebar-inner">
+
+      
+
+      
+        <ul class="sidebar-nav motion-element">
+          <li class="sidebar-nav-toc sidebar-nav-active" data-target="post-toc-wrap">
+            Table of Contents
+          </li>
+          <li class="sidebar-nav-overview" data-target="site-overview-wrap">
+            Overview
+          </li>
+        </ul>
+      
+
+      <div class="site-overview-wrap sidebar-panel">
+        <div class="site-overview">
+          <div class="site-author motion-element" itemprop="author" itemscope itemtype="http://schema.org/Person">
+            
+              <img class="site-author-image" itemprop="image" src="/images/avatar.jpeg" alt="Chuan Jin">
+            
+              <p class="site-author-name" itemprop="name">Chuan Jin</p>
+              <div class="site-description motion-element" itemprop="description"></div>
+          </div>
+
+          
+            <nav class="site-state motion-element">
+              
+                <div class="site-state-item site-state-posts">
+                
+                  <a href="/archives/">
+                
+                    <span class="site-state-item-count">20</span>
+                    <span class="site-state-item-name">posts</span>
+                  </a>
+                </div>
+              
+
+              
+                
+                
+                <div class="site-state-item site-state-categories">
+                  
+                    
+                      <a href="/categories/">
+                    
+                  
+                    
+                    
+                      
+                    
+                      
+                    
+                    <span class="site-state-item-count">2</span>
+                    <span class="site-state-item-name">categories</span>
+                  </a>
+                </div>
+              
+
+              
+                
+                
+                <div class="site-state-item site-state-tags">
+                  
+                    
+                      <a href="/tags/">
+                    
+                  
+                    
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                    <span class="site-state-item-count">10</span>
+                    <span class="site-state-item-name">tags</span>
+                  </a>
+                </div>
+              
+            </nav>
+          
+
+          
+
+          
+            <div class="links-of-author motion-element">
+              
+                <span class="links-of-author-item">
+                  
+                  
+                    
+                  
+                  
+                    
+                  
+                  <a href="https://github.com/chuanjin" title="GitHub &rarr; https://github.com/chuanjin" rel="noopener" target="_blank"><i class="fa fa-fw fa-github"></i>GitHub</a>
+                </span>
+              
+                <span class="links-of-author-item">
+                  
+                  
+                    
+                  
+                  
+                    
+                  
+                  <a href="https://www.linkedin.com/in/chuanjin" title="Linkedin &rarr; https://www.linkedin.com/in/chuanjin" rel="noopener" target="_blank"><i class="fa fa-fw fa-linkedin"></i>Linkedin</a>
+                </span>
+              
+                <span class="links-of-author-item">
+                  
+                  
+                    
+                  
+                  
+                    
+                  
+                  <a href="https://stackoverflow.com/users/3238064" title="StackOverflow &rarr; https://stackoverflow.com/users/3238064" rel="noopener" target="_blank"><i class="fa fa-fw fa-stack-overflow"></i>StackOverflow</a>
+                </span>
+              
+            </div>
+          
+
+          
+             <div class="cc-license motion-element" itemprop="license">
+              
+              
+                
+              
+              
+              
+              <a href="https://creativecommons.org/licenses/by-sa/4.0/" class="cc-opacity" rel="noopener" target="_blank"><img src="/images/cc-by-sa.svg" alt="Creative Commons"></a>
+             </div>
+          
+
+          
+          
+
+          
+            
+          
+          
+
+        </div>
+      </div>
+
+      
+      <!--noindex-->
+        <div class="post-toc-wrap motion-element sidebar-panel sidebar-panel-active">
+          <div class="post-toc">
+
+            
+            
+            
+            
+
+            
+              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-1"><a class="nav-link" href="#Static-site-generator"><span class="nav-number">1.</span> <span class="nav-text">Static site generator</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#Setup-hexo"><span class="nav-number">2.</span> <span class="nav-text">Setup hexo</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#Themes"><span class="nav-number">3.</span> <span class="nav-text">Themes</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#Workflow"><span class="nav-number">4.</span> <span class="nav-text">Workflow</span></a></li></ol></div>
+            
+
+          </div>
+        </div>
+      <!--/noindex-->
+      
+
+      
+
+    </div>
+  </aside>
+  
+
+
+        
+      </div>
+    </main>
+
+    <footer id="footer" class="footer">
+      <div class="footer-inner">
+        <div class="copyright">&copy; <span itemprop="copyrightYear">2019</span>
+  <span class="with-love" id="animate">
+    <i class="fa fa-user"></i>
+  </span>
+  <span class="author" itemprop="copyrightHolder">Chuan Jin</span>
+
+  
+
+  
+</div>
+
+
+  <div class="powered-by">Powered by <a href="https://hexo.io" class="theme-link" rel="noopener" target="_blank">Hexo</a> v3.8.0</div>
+
+
+
+  <span class="post-meta-divider">|</span>
+
+
+
+  <div class="theme-info">Theme – <a href="https://theme-next.org" class="theme-link" rel="noopener" target="_blank">NexT.Muse</a> v7.0.1</div>
+
+
+
+
+        
+
+
+
+
+
+
+
+
+        
+      </div>
+    </footer>
+
+    
+      <div class="back-to-top">
+        <i class="fa fa-arrow-up"></i>
+        
+          <span id="scrollpercent"><span>0</span>%</span>
+        
+      </div>
+    
+
+    
+
+    
+
+    
+  </div>
+
+  
+
+<script>
+  if (Object.prototype.toString.call(window.Promise) !== '[object Function]') {
+    window.Promise = null;
+  }
+</script>
+
+
+
+
+
+
+
+
+
+
+
+
+  
+
+
+
+
+
+
+
+
+
+
+
+
+
+  
+
+
+
+  
+  <script src="/lib/jquery/index.js?v=2.1.3"></script>
+
+  
+  <script src="/lib/velocity/velocity.min.js?v=1.2.1"></script>
+
+  
+  <script src="/lib/velocity/velocity.ui.min.js?v=1.2.1"></script>
+
+  
+  <script src="/lib/fancybox/source/jquery.fancybox.pack.js?v=2.1.5"></script>
+
+  
+  <script src="/lib/reading_progress/reading_progress.js"></script>
+
+
+  
+
+
+  <script src="/js/src/utils.js?v=7.0.1"></script>
+
+  <script src="/js/src/motion.js?v=7.0.1"></script>
+
+
+
+  
+  
+
+
+  <script src="/js/src/schemes/muse.js?v=7.0.1"></script>
+
+
+
+  
+  <script src="/js/src/scrollspy.js?v=7.0.1"></script>
+<script src="/js/src/post-details.js?v=7.0.1"></script>
+
+
+
+  
+
+
+  <script src="/js/src/next-boot.js?v=7.0.1"></script>
+
+
+  
+  
+
+
+  
+
+
+  
+
+
+
+
+  
+
+  
+
+  
+
+  
+
+  
+
+  
+
+  
+
+  
+
+  
+
+  
+
+  
+
+  
+
+  
+
+</body>
+</html>

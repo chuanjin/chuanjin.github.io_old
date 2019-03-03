@@ -1,0 +1,934 @@
+<!DOCTYPE html>
+
+
+
+
+
+
+
+
+
+
+
+
+  
+
+
+<html class="theme-next muse use-motion" lang>
+<head><meta name="generator" content="Hexo 3.8.0">
+  <meta charset="UTF-8">
+<meta http-equiv="X-UA-Compatible" content="IE=edge">
+<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=2">
+<meta name="theme-color" content="#222">
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+  
+  
+  <link rel="stylesheet" href="/lib/fancybox/source/jquery.fancybox.css?v=2.1.5">
+
+
+
+
+
+
+
+<link rel="stylesheet" href="/lib/font-awesome/css/font-awesome.min.css?v=4.6.2">
+
+<link rel="stylesheet" href="/css/main.css?v=7.0.1">
+
+
+  <link rel="apple-touch-icon" sizes="180x180" href="/images/apple-touch-icon-next.png?v=7.0.1">
+
+
+  <link rel="icon" type="image/png" sizes="32x32" href="/images/favicon-32x32-next.png?v=7.0.1">
+
+
+  <link rel="icon" type="image/png" sizes="16x16" href="/images/favicon-16x16-next.png?v=7.0.1">
+
+
+  <link rel="mask-icon" href="/images/logo.svg?v=7.0.1" color="#222">
+
+
+
+
+
+
+
+<script id="hexo.configurations">
+  var NexT = window.NexT || {};
+  var CONFIG = {
+    root: '/',
+    scheme: 'Muse',
+    version: '7.0.1',
+    sidebar: {"position":"left","display":"post","offset":12,"b2t":false,"scrollpercent":true,"onmobile":false,"dimmer":false},
+    fancybox: true,
+    fastclick: false,
+    lazyload: false,
+    tabs: true,
+    motion: {"enable":true,"async":false,"transition":{"post_block":"fadeIn","post_header":"slideDownIn","post_body":"slideDownIn","coll_header":"slideLeftIn","sidebar":"slideUpIn"}},
+    algolia: {
+      applicationID: '',
+      apiKey: '',
+      indexName: '',
+      hits: {"per_page":10},
+      labels: {"input_placeholder":"Search for Posts","hits_empty":"We didn't find any results for the search: ${query}","hits_stats":"${hits} results found in ${time} ms"}
+    }
+  };
+</script>
+
+
+  
+
+
+
+
+  <meta name="description" content="MQTTMQTT (MQ Telemetry Transport) is a machine-to-machine (M2M) / “Internet of Things” connectivity protocol. It was designed as an extremely lightweight publish/subscribe messaging transport. It is u">
+<meta name="keywords" content="Message Queue,Python">
+<meta property="og:type" content="article">
+<meta property="og:title" content="MQTT">
+<meta property="og:url" content="https://chuanjin.me/2015/03/19/MQTT/index.html">
+<meta property="og:site_name" content="My Tech Notes">
+<meta property="og:description" content="MQTTMQTT (MQ Telemetry Transport) is a machine-to-machine (M2M) / “Internet of Things” connectivity protocol. It was designed as an extremely lightweight publish/subscribe messaging transport. It is u">
+<meta property="og:locale" content="default">
+<meta property="og:image" content="https://chuanjin.me/images/mosquitto.PNG">
+<meta property="og:image" content="https://chuanjin.me/images/basic.PNG">
+<meta property="og:updated_time" content="2019-03-03T17:33:28.076Z">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:title" content="MQTT">
+<meta name="twitter:description" content="MQTTMQTT (MQ Telemetry Transport) is a machine-to-machine (M2M) / “Internet of Things” connectivity protocol. It was designed as an extremely lightweight publish/subscribe messaging transport. It is u">
+<meta name="twitter:image" content="https://chuanjin.me/images/mosquitto.PNG">
+
+
+
+
+
+
+  <link rel="canonical" href="https://chuanjin.me/2015/03/19/MQTT/">
+
+
+
+<script id="page.configurations">
+  CONFIG.page = {
+    sidebar: "",
+  };
+</script>
+
+  <title>MQTT | My Tech Notes</title>
+  
+
+
+
+
+  <script async src="//www.googletagmanager.com/gtag/js?id=[object Object]"></script>
+  <script>
+    var host = window.location.hostname;
+    if (host !== "localhost" || !true) {
+      window.dataLayer = window.dataLayer || [];
+      function gtag(){dataLayer.push(arguments);}
+      gtag('js', new Date());
+      gtag('config', 'UA-42884687-5');
+    }
+  </script>
+
+
+
+
+
+
+
+
+
+  <noscript>
+  <style>
+  .use-motion .motion-element,
+  .use-motion .brand,
+  .use-motion .menu-item,
+  .sidebar-inner,
+  .use-motion .post-block,
+  .use-motion .pagination,
+  .use-motion .comments,
+  .use-motion .post-header,
+  .use-motion .post-body,
+  .use-motion .collection-title { opacity: initial; }
+
+  .use-motion .logo,
+  .use-motion .site-title,
+  .use-motion .site-subtitle {
+    opacity: initial;
+    top: initial;
+  }
+
+  .use-motion .logo-line-before i { left: initial; }
+  .use-motion .logo-line-after i { right: initial; }
+  </style>
+</noscript>
+
+</head>
+
+<body itemscope itemtype="http://schema.org/WebPage" lang="default">
+
+  
+  
+    
+  
+
+  <div class="container sidebar-position-left page-post-detail">
+    <div class="headband"></div>
+
+    <header id="header" class="header" itemscope itemtype="http://schema.org/WPHeader">
+      <div class="header-inner"><div class="site-brand-wrapper">
+  <div class="site-meta">
+    
+
+    <div class="custom-logo-site-title">
+      <a href="/" class="brand" rel="start">
+        <span class="logo-line-before"><i></i></span>
+        <span class="site-title">My Tech Notes</span>
+        <span class="logo-line-after"><i></i></span>
+      </a>
+    </div>
+    
+    
+  </div>
+
+  <div class="site-nav-toggle">
+    <button aria-label="Toggle navigation bar">
+      <span class="btn-bar"></span>
+      <span class="btn-bar"></span>
+      <span class="btn-bar"></span>
+    </button>
+  </div>
+</div>
+
+
+
+<nav class="site-nav">
+  
+    <ul id="menu" class="menu">
+      
+        
+        
+        
+          
+          <li class="menu-item menu-item-home">
+
+    
+    
+    
+      
+    
+
+    
+
+    <a href="/" rel="section"><i class="menu-item-icon fa fa-fw fa-home"></i> <br>Home</a>
+
+  </li>
+        
+        
+        
+          
+          <li class="menu-item menu-item-archives">
+
+    
+    
+    
+      
+    
+
+    
+
+    <a href="/archives/" rel="section"><i class="menu-item-icon fa fa-fw fa-archive"></i> <br>Archives</a>
+
+  </li>
+        
+        
+        
+          
+          <li class="menu-item menu-item-about">
+
+    
+    
+    
+      
+    
+
+    
+
+    <a href="/about/" rel="section"><i class="menu-item-icon fa fa-fw fa-user"></i> <br>About</a>
+
+  </li>
+
+      
+      
+    </ul>
+  
+
+  
+    
+
+  
+
+  
+</nav>
+
+
+
+  
+
+
+
+</div>
+    </header>
+
+    
+
+
+    <main id="main" class="main">
+      <div class="main-inner">
+        <div class="content-wrap">
+          
+          <div id="content" class="content">
+            
+
+  <div id="posts" class="posts-expand">
+    
+
+  
+
+  
+  
+  
+
+  
+    <div class="reading-progress-bar"></div>
+  
+
+  <article class="post post-type-normal" itemscope itemtype="http://schema.org/Article">
+  
+  
+  
+  <div class="post-block">
+    <link itemprop="mainEntityOfPage" href="https://chuanjin.me/2015/03/19/MQTT/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="name" content="Chuan Jin">
+      <meta itemprop="description" content>
+      <meta itemprop="image" content="/images/avatar.jpeg">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="My Tech Notes">
+    </span>
+
+    
+      <header class="post-header">
+
+        
+        
+          <h1 class="post-title" itemprop="name headline">MQTT
+
+              
+            
+          </h1>
+        
+
+        <div class="post-meta">
+          <span class="post-time">
+
+            
+            
+            
+
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-calendar-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">Posted on</span>
+              
+
+              
+                
+              
+
+              <time title="Created: 2015-03-19 19:42:19" itemprop="dateCreated datePublished" datetime="2015-03-19T19:42:19+01:00">2015-03-19</time>
+            
+
+            
+              
+
+              
+                
+                <span class="post-meta-divider">|</span>
+                
+
+                <span class="post-meta-item-icon">
+                  <i class="fa fa-calendar-check-o"></i>
+                </span>
+                
+                  <span class="post-meta-item-text">Edited on</span>
+                
+                <time title="Modified: 2019-03-03 18:33:28" itemprop="dateModified" datetime="2019-03-03T18:33:28+01:00">2019-03-03</time>
+              
+            
+          </span>
+
+          
+            <span class="post-category">
+            
+              <span class="post-meta-divider">|</span>
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-folder-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">In</span>
+              
+              
+                <span itemprop="about" itemscope itemtype="http://schema.org/Thing"><a href="/categories/R-D/" itemprop="url" rel="index"><span itemprop="name">R&D</span></a></span>
+
+                
+                
+              
+            </span>
+          
+
+          
+            
+            
+          
+
+          
+          
+
+          
+
+          
+
+          
+
+        </div>
+      </header>
+    
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+
+      
+      
+
+      
+        <h1 id="MQTT"><a href="#MQTT" class="headerlink" title="MQTT"></a>MQTT</h1><blockquote><p>MQTT (MQ Telemetry Transport) is a machine-to-machine (M2M) / “Internet of Things” connectivity protocol. It was designed as an extremely lightweight publish/subscribe messaging transport. It is useful for connections with remote locations where a small code footprint is required and/or network bandwidth is at a premium.</p>
+<footer><strong>[http://mqtt.org]</strong></footer></blockquote>
+<p>MQTT is explicitly built for devices with limited resources and is therefore very light on battery. It is designed for unreliable TCP networks or low bandwidth and ideal to run on an embedded device with limited processor or memory resources.</p>
+<a id="more"></a>
+<p>The idea is that, every client could behave like a subscriber, a publisher or both. Clients do not communicate directly, all the messages should go through the broker, which is the central server. A client subscribes a topic to the broker, just like listening to a channel, whenever there is new data published from any publisher to the topic, the broker will push it to the interested subscribers, the subscriber has no idea who is the publisher of the message, they only care about the message and topic.</p>
+<h2 id="Quality-of-Service"><a href="#Quality-of-Service" class="headerlink" title="Quality of Service"></a>Quality of Service</h2><p>There are three levels of Quality of Service (QoS) defined in MQTT. The QoS defines how hard the broker/client will try to ensure that a message is received. Higher levels of QoS are more reliable, but involve higher latency and have higher bandwidth requirements.</p>
+<ul>
+<li>0: The broker/client will deliver the message once, with no confirmation.</li>
+<li>1: The broker/client will deliver the message at least once, with confirmation required.</li>
+<li>2: The broker/client will deliver the message exactly once by using a four step handshake.</li>
+</ul>
+<h2 id="Retained-Messages"><a href="#Retained-Messages" class="headerlink" title="Retained Messages"></a>Retained Messages</h2><p>All messages may be set to be retained, by setting a retained flag. This means that the broker will keep the message even after sending it to all current subscribers. If a new subscription is made that matches the topic of the retained message, then the message will be sent to the client immediately. This is useful as a “last known good” mechanism. If a topic is only updated infrequently, then without a retained message, a newly subscribed client may have to wait a long time to receive an update. With a retained message, the client will receive an instant update.</p>
+<h2 id="Clean-session-Durable-connections"><a href="#Clean-session-Durable-connections" class="headerlink" title="Clean session / Durable connections"></a>Clean session / Durable connections</h2><p>On connection, a client can set the “clean session” flag, which is also known as the “clean start” flag. If clean session is set to false, then the connection is treated as durable. This means that when the client disconnects, any subscriptions it has will remain and any subsequent QoS 1 or 2 messages will be stored until it connects again in the future. If clean session is true, then all subscriptions will be removed for the client when it disconnects.</p>
+<h2 id="Last-Will"><a href="#Last-Will" class="headerlink" title="Last Will"></a>Last Will</h2><p>When a client connects to a broker, it may inform the broker that it has a will message, which will be delivered when the client disconnects unexpectedly. The will message has a topic, QoS and retain status just the same as any other message.</p>
+<hr>
+<h1 id="Mosquitto"><a href="#Mosquitto" class="headerlink" title="Mosquitto"></a>Mosquitto</h1><p><a href="http://mosquitto.org/" target="_blank" rel="noopener">Mosquitto</a> is a famous open source MQTT broker, it is easy to download and install. Below are a few dependency packages might be needed if they are not already existing in you system:</p>
+<p>  sudo apt-get update<br>    sudo apt-get install python-dev gcc g++ make xz-utils libssl-dev uuid-dev</p>
+<p>Then you can easily install it</p>
+<figure class="highlight vim"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line">wget http://mosquitto.org/<span class="keyword">files</span>/<span class="keyword">source</span>/mosquitto-<span class="number">1.4</span>.tar.gz</span><br><span class="line">tar xzvf mosquitto-<span class="number">1.4</span>.tar.gz</span><br><span class="line"><span class="keyword">cd</span> mosquitto-<span class="number">1.4</span>/</span><br><span class="line"><span class="keyword">make</span></span><br><span class="line">sudo <span class="keyword">make</span> install</span><br></pre></td></tr></table></figure>
+<p>Once installed, you may find mosquitto broker ships with useful command line tools  for testing the pub/sub behavior</p>
+<p><img src="/images/mosquitto.PNG" alt></p>
+<p>Get more usage info:</p>
+<pre><code>mosquitto_pub --help
+mosquitto_sub --help
+</code></pre><p>You can always check the <a href="http://mosquitto.org/documentation/" target="_blank" rel="noopener">documents</a> for help.</p>
+<hr>
+<h1 id="Paho-clients"><a href="#Paho-clients" class="headerlink" title="Paho clients"></a>Paho clients</h1><p><a href="https://eclipse.org/paho" target="_blank" rel="noopener">Paho</a> project provides open source clients for MQTT. Let’s take python client for instance. To install from source:</p>
+<pre><code>git clone http://git.eclipse.org/gitroot/paho/org.eclipse.paho.mqtt.python.git
+cd org.eclipse.paho.mqtt.python.git
+sudo python setup.py install
+</code></pre><p>A very basic publisher publishes random data every 2 seconds</p>
+<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">import</span> time</span><br><span class="line"><span class="keyword">import</span> random</span><br><span class="line"><span class="keyword">import</span> paho.mqtt.client <span class="keyword">as</span> mqtt</span><br><span class="line"></span><br><span class="line">PORT=<span class="number">1883</span></span><br><span class="line">HOST=<span class="string">'localhost'</span></span><br><span class="line"></span><br><span class="line"><span class="function"><span class="keyword">def</span> <span class="title">mqttHandler</span><span class="params">()</span>:</span></span><br><span class="line">    mqttc.connect(HOST, PORT)</span><br><span class="line">    <span class="keyword">while</span> <span class="literal">True</span>:</span><br><span class="line">        status = random.randint(<span class="number">1</span>,<span class="number">100</span>)</span><br><span class="line">        print(<span class="string">"Sending "</span> + str(status))</span><br><span class="line">        mqttc.publish(<span class="string">"example/basic"</span>, payload=status, retain=<span class="literal">True</span>)</span><br><span class="line">        time.sleep(<span class="number">2</span>)</span><br><span class="line"></span><br><span class="line"><span class="keyword">if</span> __name__ == <span class="string">'__main__'</span>:</span><br><span class="line">    mqttc = mqtt.Client()</span><br><span class="line">    mqttHandler()</span><br></pre></td></tr></table></figure>
+<p>A very simple subscriber is listening the topic</p>
+<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br></pre></td><td class="code"><pre><span class="line"></span><br><span class="line"><span class="keyword">import</span> paho.mqtt.client <span class="keyword">as</span> mqtt</span><br><span class="line"></span><br><span class="line">PORT=<span class="number">1883</span></span><br><span class="line">HOST=<span class="string">'localhost'</span></span><br><span class="line"></span><br><span class="line"><span class="function"><span class="keyword">def</span> <span class="title">on_message</span><span class="params">(mosq, userdata, msg)</span>:</span></span><br><span class="line">    print(<span class="string">"Got topic: "</span> + msg.topic + <span class="string">", message: "</span> + msg.payload.decode(<span class="string">"utf-8"</span>))</span><br><span class="line"></span><br><span class="line"><span class="function"><span class="keyword">def</span> <span class="title">mqttHandler</span><span class="params">()</span>:</span></span><br><span class="line">    mqttc.connect(HOST, PORT)</span><br><span class="line">    mqttc.subscribe(<span class="string">'example/basic'</span>)</span><br><span class="line">    <span class="keyword">while</span> <span class="literal">True</span>:</span><br><span class="line">        mqttc.loop()</span><br><span class="line"></span><br><span class="line"><span class="keyword">if</span> __name__ == <span class="string">'__main__'</span>:</span><br><span class="line">    mqttc = mqtt.Client()</span><br><span class="line">    mqttc.on_message = on_message</span><br><span class="line">    mqttHandler()</span><br></pre></td></tr></table></figure>
+<p>You need to have you mosquitto broker up and running on you local machine.<br><img src="/images/basic.PNG" alt></p>
+
+      
+    </div>
+
+    
+
+    
+    
+    
+
+    
+
+    
+      
+    
+    
+
+    
+
+    <footer class="post-footer">
+      
+        <div class="post-tags">
+          
+            <a href="/tags/Message-Queue/" rel="tag"># Message Queue</a>
+          
+            <a href="/tags/Python/" rel="tag"># Python</a>
+          
+        </div>
+      
+
+      
+      
+      
+
+      
+        <div class="post-nav">
+          <div class="post-nav-next post-nav-item">
+            
+              <a href="/2015/03/12/Open-Source-Licenses/" rel="next" title="Open Source Licenses">
+                <i class="fa fa-chevron-left"></i> Open Source Licenses
+              </a>
+            
+          </div>
+
+          <span class="post-nav-divider"></span>
+
+          <div class="post-nav-prev post-nav-item">
+            
+              <a href="/2015/04/22/JS-runtime-in-Rails/" rel="prev" title="JS runtime in Rails">
+                JS runtime in Rails <i class="fa fa-chevron-right"></i>
+              </a>
+            
+          </div>
+        </div>
+      
+
+      
+      
+    </footer>
+  </div>
+  
+  
+  
+  </article>
+
+
+  </div>
+
+
+          </div>
+          
+
+  
+
+
+
+        </div>
+        
+          
+  
+  <div class="sidebar-toggle">
+    <div class="sidebar-toggle-line-wrap">
+      <span class="sidebar-toggle-line sidebar-toggle-line-first"></span>
+      <span class="sidebar-toggle-line sidebar-toggle-line-middle"></span>
+      <span class="sidebar-toggle-line sidebar-toggle-line-last"></span>
+    </div>
+  </div>
+
+  <aside id="sidebar" class="sidebar">
+    <div class="sidebar-inner">
+
+      
+
+      
+        <ul class="sidebar-nav motion-element">
+          <li class="sidebar-nav-toc sidebar-nav-active" data-target="post-toc-wrap">
+            Table of Contents
+          </li>
+          <li class="sidebar-nav-overview" data-target="site-overview-wrap">
+            Overview
+          </li>
+        </ul>
+      
+
+      <div class="site-overview-wrap sidebar-panel">
+        <div class="site-overview">
+          <div class="site-author motion-element" itemprop="author" itemscope itemtype="http://schema.org/Person">
+            
+              <img class="site-author-image" itemprop="image" src="/images/avatar.jpeg" alt="Chuan Jin">
+            
+              <p class="site-author-name" itemprop="name">Chuan Jin</p>
+              <div class="site-description motion-element" itemprop="description"></div>
+          </div>
+
+          
+            <nav class="site-state motion-element">
+              
+                <div class="site-state-item site-state-posts">
+                
+                  <a href="/archives/">
+                
+                    <span class="site-state-item-count">20</span>
+                    <span class="site-state-item-name">posts</span>
+                  </a>
+                </div>
+              
+
+              
+                
+                
+                <div class="site-state-item site-state-categories">
+                  
+                    
+                      <a href="/categories/">
+                    
+                  
+                    
+                    
+                      
+                    
+                      
+                    
+                    <span class="site-state-item-count">2</span>
+                    <span class="site-state-item-name">categories</span>
+                  </a>
+                </div>
+              
+
+              
+                
+                
+                <div class="site-state-item site-state-tags">
+                  
+                    
+                      <a href="/tags/">
+                    
+                  
+                    
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                    <span class="site-state-item-count">10</span>
+                    <span class="site-state-item-name">tags</span>
+                  </a>
+                </div>
+              
+            </nav>
+          
+
+          
+
+          
+            <div class="links-of-author motion-element">
+              
+                <span class="links-of-author-item">
+                  
+                  
+                    
+                  
+                  
+                    
+                  
+                  <a href="https://github.com/chuanjin" title="GitHub &rarr; https://github.com/chuanjin" rel="noopener" target="_blank"><i class="fa fa-fw fa-github"></i>GitHub</a>
+                </span>
+              
+                <span class="links-of-author-item">
+                  
+                  
+                    
+                  
+                  
+                    
+                  
+                  <a href="https://www.linkedin.com/in/chuanjin" title="Linkedin &rarr; https://www.linkedin.com/in/chuanjin" rel="noopener" target="_blank"><i class="fa fa-fw fa-linkedin"></i>Linkedin</a>
+                </span>
+              
+                <span class="links-of-author-item">
+                  
+                  
+                    
+                  
+                  
+                    
+                  
+                  <a href="https://stackoverflow.com/users/3238064" title="StackOverflow &rarr; https://stackoverflow.com/users/3238064" rel="noopener" target="_blank"><i class="fa fa-fw fa-stack-overflow"></i>StackOverflow</a>
+                </span>
+              
+            </div>
+          
+
+          
+             <div class="cc-license motion-element" itemprop="license">
+              
+              
+                
+              
+              
+              
+              <a href="https://creativecommons.org/licenses/by-sa/4.0/" class="cc-opacity" rel="noopener" target="_blank"><img src="/images/cc-by-sa.svg" alt="Creative Commons"></a>
+             </div>
+          
+
+          
+          
+
+          
+            
+          
+          
+
+        </div>
+      </div>
+
+      
+      <!--noindex-->
+        <div class="post-toc-wrap motion-element sidebar-panel sidebar-panel-active">
+          <div class="post-toc">
+
+            
+            
+            
+            
+
+            
+              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-1"><a class="nav-link" href="#MQTT"><span class="nav-number">1.</span> <span class="nav-text">MQTT</span></a><ol class="nav-child"><li class="nav-item nav-level-2"><a class="nav-link" href="#Quality-of-Service"><span class="nav-number">1.1.</span> <span class="nav-text">Quality of Service</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#Retained-Messages"><span class="nav-number">1.2.</span> <span class="nav-text">Retained Messages</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#Clean-session-Durable-connections"><span class="nav-number">1.3.</span> <span class="nav-text">Clean session / Durable connections</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#Last-Will"><span class="nav-number">1.4.</span> <span class="nav-text">Last Will</span></a></li></ol></li><li class="nav-item nav-level-1"><a class="nav-link" href="#Mosquitto"><span class="nav-number">2.</span> <span class="nav-text">Mosquitto</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#Paho-clients"><span class="nav-number">3.</span> <span class="nav-text">Paho clients</span></a></li></ol></div>
+            
+
+          </div>
+        </div>
+      <!--/noindex-->
+      
+
+      
+
+    </div>
+  </aside>
+  
+
+
+        
+      </div>
+    </main>
+
+    <footer id="footer" class="footer">
+      <div class="footer-inner">
+        <div class="copyright">&copy; <span itemprop="copyrightYear">2019</span>
+  <span class="with-love" id="animate">
+    <i class="fa fa-user"></i>
+  </span>
+  <span class="author" itemprop="copyrightHolder">Chuan Jin</span>
+
+  
+
+  
+</div>
+
+
+  <div class="powered-by">Powered by <a href="https://hexo.io" class="theme-link" rel="noopener" target="_blank">Hexo</a> v3.8.0</div>
+
+
+
+  <span class="post-meta-divider">|</span>
+
+
+
+  <div class="theme-info">Theme – <a href="https://theme-next.org" class="theme-link" rel="noopener" target="_blank">NexT.Muse</a> v7.0.1</div>
+
+
+
+
+        
+
+
+
+
+
+
+
+
+        
+      </div>
+    </footer>
+
+    
+      <div class="back-to-top">
+        <i class="fa fa-arrow-up"></i>
+        
+          <span id="scrollpercent"><span>0</span>%</span>
+        
+      </div>
+    
+
+    
+
+    
+
+    
+  </div>
+
+  
+
+<script>
+  if (Object.prototype.toString.call(window.Promise) !== '[object Function]') {
+    window.Promise = null;
+  }
+</script>
+
+
+
+
+
+
+
+
+
+
+
+
+  
+
+
+
+
+
+
+
+
+
+
+
+
+
+  
+
+
+
+  
+  <script src="/lib/jquery/index.js?v=2.1.3"></script>
+
+  
+  <script src="/lib/velocity/velocity.min.js?v=1.2.1"></script>
+
+  
+  <script src="/lib/velocity/velocity.ui.min.js?v=1.2.1"></script>
+
+  
+  <script src="/lib/fancybox/source/jquery.fancybox.pack.js?v=2.1.5"></script>
+
+  
+  <script src="/lib/reading_progress/reading_progress.js"></script>
+
+
+  
+
+
+  <script src="/js/src/utils.js?v=7.0.1"></script>
+
+  <script src="/js/src/motion.js?v=7.0.1"></script>
+
+
+
+  
+  
+
+
+  <script src="/js/src/schemes/muse.js?v=7.0.1"></script>
+
+
+
+  
+  <script src="/js/src/scrollspy.js?v=7.0.1"></script>
+<script src="/js/src/post-details.js?v=7.0.1"></script>
+
+
+
+  
+
+
+  <script src="/js/src/next-boot.js?v=7.0.1"></script>
+
+
+  
+  
+
+
+  
+
+
+  
+
+
+
+
+  
+
+  
+
+  
+
+  
+
+  
+
+  
+
+  
+
+  
+
+  
+
+  
+
+  
+
+  
+
+  
+
+</body>
+</html>
