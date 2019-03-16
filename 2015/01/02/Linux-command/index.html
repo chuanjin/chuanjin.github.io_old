@@ -100,18 +100,18 @@
 
 
 
-  <meta name="description" content="Here is a collection of the Linux commands I used but always forget.  Check the system 64 or 22 bit:getconf LONG_BIT  Check space usage:df -h  Check processes:ps ux or ps -ef or lsof -n -i  Kill a pro">
+  <meta name="description" content="Here is a collection of the Linux commands I used but always forget.">
 <meta name="keywords" content="Linux">
 <meta property="og:type" content="article">
 <meta property="og:title" content="Linux commands">
 <meta property="og:url" content="https://chuanjin.me/2015/01/02/Linux-command/index.html">
 <meta property="og:site_name" content="My Tech Notes">
-<meta property="og:description" content="Here is a collection of the Linux commands I used but always forget.  Check the system 64 or 22 bit:getconf LONG_BIT  Check space usage:df -h  Check processes:ps ux or ps -ef or lsof -n -i  Kill a pro">
+<meta property="og:description" content="Here is a collection of the Linux commands I used but always forget.">
 <meta property="og:locale" content="default">
-<meta property="og:updated_time" content="2019-03-03T17:33:28.076Z">
+<meta property="og:updated_time" content="2019-03-16T16:50:42.358Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="Linux commands">
-<meta name="twitter:description" content="Here is a collection of the Linux commands I used but always forget.  Check the system 64 or 22 bit:getconf LONG_BIT  Check space usage:df -h  Check processes:ps ux or ps -ef or lsof -n -i  Kill a pro">
+<meta name="twitter:description" content="Here is a collection of the Linux commands I used but always forget.">
 
 
 
@@ -383,7 +383,7 @@
                 
                   <span class="post-meta-item-text">Edited on</span>
                 
-                <time title="Modified: 2019-03-03 18:33:28" itemprop="dateModified" datetime="2019-03-03T18:33:28+01:00">2019-03-03</time>
+                <time title="Modified: 2019-03-16 17:50:42" itemprop="dateModified" datetime="2019-03-16T17:50:42+01:00">2019-03-16</time>
               
             
           </span>
@@ -436,47 +436,7 @@
 
       
         <p><strong>Here is a collection of the Linux commands I used but always forget.</strong></p>
-<ul>
-<li><p>Check the system 64 or 22 bit:<br><code>getconf LONG_BIT</code></p>
-</li>
-<li><p>Check space usage:<br><code>df -h</code></p>
-</li>
-<li><p>Check processes:<br><code>ps ux</code> or <code>ps -ef</code> or <code>lsof -n -i</code></p>
-</li>
-<li><p>Kill a process:<br><code>kill -9 PID</code></p>
-</li>
-</ul>
-<a id="more"></a>
-<ul>
-<li><p>Check Ubuntu version<br><code>$cat /etc/lsb-release</code></p>
-</li>
-<li><p>Check folder size<br><code>du -sh /PATH_TO_FOLDER</code></p>
-</li>
-<li><p>Display information about the contents of ELF files<br><code>readelf -h libname.a</code></p>
-</li>
-<li><p>To create a soft link<br><code>ln -s /full/path/of/original/file /full/path/of/soft/link/file</code></p>
-</li>
-<li><p>To remove all the .svn files from the previous version control system<br><code>find . -name .svn -exec rm -rf {} \;</code></p>
-</li>
-<li><p><code>CTRL + ALT + F7</code> for switching to gui, <code>CTRL + ALT + F1</code> to switch to CLI.</p>
-</li>
-<li><p>Put down/up interface “eth0”<br><code>sudo ifconfig eth0 down/up</code></p>
-</li>
-<li><p>Keep runing after exit,<br>refer <a href="http://en.wikipedia.org/wiki/Nohup" target="_blank" rel="noopener">http://en.wikipedia.org/wiki/Nohup</a><br><code>nohup sth &amp;</code></p>
-</li>
-<li><p>Get a list of packages installed locally,<br>refer <a href="http://askubuntu.com/questions/17823/how-to-list-all-installed-packages" target="_blank" rel="noopener">http://askubuntu.com/questions/17823/how-to-list-all-installed-packages</a><br><code>dpkg --get-selections | grep -v deinstall</code></p>
-</li>
-<li><p>Analysis tcp transport via “eth0” interface on port 1883,<br>refer <a href="https://danielmiessler.com/study/tcpdump/" target="_blank" rel="noopener">https://danielmiessler.com/study/tcpdump/</a><br><code>sudo tcpdump -i eth0 port 1883 -XX</code></p>
-</li>
-<li><p>Sort the files by size<br><code>du -sh * | sort -h</code></p>
-</li>
-<li><p>Remove old files, filtered by year<br><code>ll | grep 2015 | awk &#39;{print $9}&#39; | xargs rm</code></p>
-</li>
-<li><p>Apache HTTP server benchmarking load test<br><code>ab -n 10000 -c 100 http://localhost/</code></p>
-</li>
-<li><p>Show full path in the Finder window<br>defaults write com.apple.finder _FXShowPosixPathInTitle TRUE<br>killall Finder</p>
-</li>
-</ul>
+<script src="//gist.github.com/chuanjin/243bd63f12beb4e340d7a67fa287ea01.js"></script>
 
       
     </div>
