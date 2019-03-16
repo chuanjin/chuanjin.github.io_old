@@ -100,25 +100,25 @@
 
 
 
-  <meta name="description" content="Air Quality IndexI’v been experimenting to fetch data related to AQI in China recently. A good resource is http://aqicn.org, which provides air pollution data in a good way by city, and I try to write">
-<meta name="keywords" content="Python">
+  <meta name="description" content="We have covered the MQTT and MQTT with websockets support, now we talk about security.">
+<meta name="keywords" content="Message Queue">
 <meta property="og:type" content="article">
-<meta property="og:title" content="AQI">
-<meta property="og:url" content="https://chuanjin.me/2016/11/10/air-quality-data-md/index.html">
+<meta property="og:title" content="secure MQTT">
+<meta property="og:url" content="https://chuanjin.me/2017/08/07/MQTT-certificate/index.html">
 <meta property="og:site_name" content="My Tech Notes">
-<meta property="og:description" content="Air Quality IndexI’v been experimenting to fetch data related to AQI in China recently. A good resource is http://aqicn.org, which provides air pollution data in a good way by city, and I try to write">
+<meta property="og:description" content="We have covered the MQTT and MQTT with websockets support, now we talk about security.">
 <meta property="og:locale" content="default">
-<meta property="og:updated_time" content="2019-03-16T12:55:45.901Z">
+<meta property="og:updated_time" content="2019-03-16T18:53:26.146Z">
 <meta name="twitter:card" content="summary">
-<meta name="twitter:title" content="AQI">
-<meta name="twitter:description" content="Air Quality IndexI’v been experimenting to fetch data related to AQI in China recently. A good resource is http://aqicn.org, which provides air pollution data in a good way by city, and I try to write">
+<meta name="twitter:title" content="secure MQTT">
+<meta name="twitter:description" content="We have covered the MQTT and MQTT with websockets support, now we talk about security.">
 
 
 
 
 
 
-  <link rel="canonical" href="https://chuanjin.me/2016/11/10/air-quality-data-md/">
+  <link rel="canonical" href="https://chuanjin.me/2017/08/07/MQTT-certificate/">
 
 
 
@@ -128,7 +128,7 @@
   };
 </script>
 
-  <title>AQI | My Tech Notes</title>
+  <title>secure MQTT | My Tech Notes</title>
   
 
 
@@ -323,7 +323,7 @@
   
   
   <div class="post-block">
-    <link itemprop="mainEntityOfPage" href="https://chuanjin.me/2016/11/10/air-quality-data-md/">
+    <link itemprop="mainEntityOfPage" href="https://chuanjin.me/2017/08/07/MQTT-certificate/">
 
     <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
       <meta itemprop="name" content="Chuan Jin">
@@ -340,7 +340,7 @@
 
         
         
-          <h1 class="post-title" itemprop="name headline">AQI
+          <h1 class="post-title" itemprop="name headline">secure MQTT
 
               
             
@@ -366,7 +366,7 @@
                 
               
 
-              <time title="Created: 2016-11-10 14:50:47" itemprop="dateCreated datePublished" datetime="2016-11-10T14:50:47+01:00">2016-11-10</time>
+              <time title="Created: 2017-08-07 21:38:41" itemprop="dateCreated datePublished" datetime="2017-08-07T21:38:41+02:00">2017-08-07</time>
             
 
             
@@ -383,7 +383,7 @@
                 
                   <span class="post-meta-item-text">Edited on</span>
                 
-                <time title="Modified: 2019-03-16 13:55:45" itemprop="dateModified" datetime="2019-03-16T13:55:45+01:00">2019-03-16</time>
+                <time title="Modified: 2019-03-16 19:53:26" itemprop="dateModified" datetime="2019-03-16T19:53:26+01:00">2019-03-16</time>
               
             
           </span>
@@ -435,15 +435,8 @@
       
 
       
-        <h1 id="Air-Quality-Index"><a href="#Air-Quality-Index" class="headerlink" title="Air Quality Index"></a>Air Quality Index</h1><p>I’v been experimenting to fetch data related to <a href="https://en.wikipedia.org/wiki/Air_quality_index" target="_blank" rel="noopener">AQI</a> in China recently.</p>
-<p>A good resource is <a href="http://aqicn.org" target="_blank" rel="noopener">http://aqicn.org</a>, which provides air pollution data in a good way by city, and I try to write a python script to crawl the data from it.</p>
-<a id="more"></a>
-<script src="//gist.github.com/chuanjin/07a0f43530464cabe7ff3cb45107e4d1.js"></script>
-<p>Another website is <a href="http://www.stateair.net/" target="_blank" rel="noopener">http://www.stateair.net/</a>, it reports AQI from US consulate in Chinese major cities, i.e. Beijing, Shanghai, Guangzhou, Chengdu and Shenyang. Similarly, the code to fetch data from it shown below.</p>
-<script src="//gist.github.com/chuanjin/4d0307f1dbcb19c2743a348045b137ea.js"></script>
-<p>Both of the code above are using Python and handy packages like <a href="http://docs.python-requests.org/en/master/" target="_blank" rel="noopener">requests</a> and  <a href="https://www.crummy.com/software/BeautifulSoup/bs4/doc/" target="_blank" rel="noopener">Beautiful Soup</a>.</p>
-<p>The stateair website also provides historical data for download in CSV format, therefore I use those data to create a simple visulization page. Check it from <a href="http://chuanjin.me/pm25/">http://chuanjin.me/pm25/</a> and source code is availabe from Github <a href="https://github.com/chuanjin/pm25" target="_blank" rel="noopener">repo</a>.</p>
-<p>Last but not least, I found <a href="http://pm25.in/" target="_blank" rel="noopener">pm25.in</a> website, and they provide real time data for all Chinese cities, even better, they have opened their API for develper and I also created a Python library based on their API. Code available from <a href="https://github.com/chuanjin/python-aqi-zh" target="_blank" rel="noopener">https://github.com/chuanjin/python-aqi-zh</a></p>
+        <p>We have covered the <a href="/2015/03/19/MQTT/" title="MQTT">MQTT</a> and <a href="/2015/12/07/mqtt-with-websockets/" title="MQTT with websockets support">MQTT with websockets support</a>, now we talk about security.</p>
+<script src="//gist.github.com/chuanjin/070cfc4e253d6d77ba297d4cdfab0ebc.js"></script>
 
       
     </div>
@@ -467,7 +460,7 @@
       
         <div class="post-tags">
           
-            <a href="/tags/Python/" rel="tag"># Python</a>
+            <a href="/tags/Message-Queue/" rel="tag"># Message Queue</a>
           
         </div>
       
@@ -480,8 +473,8 @@
         <div class="post-nav">
           <div class="post-nav-next post-nav-item">
             
-              <a href="/2016/10/14/new-vim-hack/" rel="next" title="New Vim Hack">
-                <i class="fa fa-chevron-left"></i> New Vim Hack
+              <a href="/2017/03/04/capture-packet/" rel="next" title="Capture Network Packet">
+                <i class="fa fa-chevron-left"></i> Capture Network Packet
               </a>
             
           </div>
@@ -490,9 +483,9 @@
 
           <div class="post-nav-prev post-nav-item">
             
-              <a href="/2016/11/25/host-from-to-docker/" rel="prev" title="Host <--> Docker">
-                Host <--> Docker <i class="fa fa-chevron-right"></i>
-              </--></a>
+              <a href="/2018/02/12/git-workflow/" rel="prev" title="Git Workflow">
+                Git Workflow <i class="fa fa-chevron-right"></i>
+              </a>
             
           </div>
         </div>
@@ -536,17 +529,8 @@
       
 
       
-        <ul class="sidebar-nav motion-element">
-          <li class="sidebar-nav-toc sidebar-nav-active" data-target="post-toc-wrap">
-            Table of Contents
-          </li>
-          <li class="sidebar-nav-overview" data-target="site-overview-wrap">
-            Overview
-          </li>
-        </ul>
-      
 
-      <div class="site-overview-wrap sidebar-panel">
+      <div class="site-overview-wrap sidebar-panel sidebar-panel-active">
         <div class="site-overview">
           <div class="site-author motion-element" itemprop="author" itemscope itemtype="http://schema.org/Person">
             
@@ -693,23 +677,6 @@
         </div>
       </div>
 
-      
-      <!--noindex-->
-        <div class="post-toc-wrap motion-element sidebar-panel sidebar-panel-active">
-          <div class="post-toc">
-
-            
-            
-            
-            
-
-            
-              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-1"><a class="nav-link" href="#Air-Quality-Index"><span class="nav-number">1.</span> <span class="nav-text">Air Quality Index</span></a></li></ol></div>
-            
-
-          </div>
-        </div>
-      <!--/noindex-->
       
 
       
